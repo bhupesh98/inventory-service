@@ -17,3 +17,22 @@ springdoc:
     path: /swagger-ui.html
   api-docs:
     path: /api-docs
+
+
+## LOKI configuration
+loki.url: http://localhost:3100/loki/api/v1/push
+management:
+  tracing:
+    sampling:
+      probability: 1.0
+  metrics:
+    distribution:
+      percentiles-histogram:
+        http.server.requests: true
+  observations:
+    key-values:
+      application: ${spring.application.name}
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus
